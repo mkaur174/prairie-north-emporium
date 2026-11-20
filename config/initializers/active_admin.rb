@@ -350,3 +350,14 @@ ActiveAdmin.setup do |config|
   #
   # config.use_webpacker = true
 end
+Rails.application.config.to_prepare do
+  ActiveAdmin::Comment.class_eval do
+    def self.ransackable_attributes(auth_object = nil)
+      column_names
+    end
+
+    def self.ransackable_associations(auth_object = nil)
+      reflect_on_all_associations.map { |a| a.name.to_s }
+    end
+  end
+end
