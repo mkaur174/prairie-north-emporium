@@ -1,0 +1,47 @@
+<h1 class="mb-4">Your Shopping Cart</h1>
+
+<% if @cart_items.empty? %>
+  <div class="alert alert-info">
+    Your cart is currently empty. <%= link_to "Browse products", root_path, class: "alert-link" %>.
+  </div>
+<% else %>
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Line Total</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |item| %>
+          <tr>
+            <td><%= link_to item[:product].title, product_path(item[:product]), class: "text-decoration-none fw-semibold" %></td>
+            <td><%= number_to_currency(item[:product].price) %></td>
+            <td>
+              <%= form_with url: update_item_cart_path(item[:product]), method: :patch, local: true, class: "d-flex gap-2" do |f| %>
+                <%= f.number_field :quantity, value: item[:quantity], min: 1, class: "form-control form-control-sm", style: "width: 85px;" %>
+                <%= f.submit "Update", class: "btn btn-sm btn-outline-primary" %>
+              <% end %>
+            </td>
+            <td class="fw-bold"><%= number_to_currency(item[:line_total]) %></td>
+            <td>
+              <%= button_to "Remove", remove_item_cart_path(item[:product]), method: :delete, class: "btn btn-sm btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-end mt-3">
+    <h4>Subtotal: <span class="text-success"><%= number_to_currency(@subtotal) %></span></h4>
+    <div class="mt-3">
+      <%= link_to "Continue Shopping", root_path, class: "btn btn-outline-secondary me-2" %>
+      <%= link_to "Proceed to Checkout", new_order_path, class: "btn btn-success btn-lg" %>
+    </div>
+  </div>
+<% end %>
