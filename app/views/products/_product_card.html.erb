@@ -6,7 +6,8 @@
         <%= link_to product.title, product_path(product), class: "text-decoration-none text-dark" %>
       </h5>
       <p class="card-text text-muted small flex-grow-1"><%= truncate(product.description, length: 90) %></p>
-      <p class="fw-bold fs-5 mb-2"><%= number_to_currency(product.price) %></p>
+      <p class="fw-bold fs-5 mb-1"><%= number_to_currency(product.price) %></p>
+      <p class="text-muted small mb-2">In Stock: <%= product.stock_quantity %></p>
       <div class="d-flex gap-2">
         <%= link_to "View Details", product_path(product), class: "btn btn-sm btn-outline-primary" %>
         <%= button_to "Add to Cart", add_to_cart_path(product), method: :post, class: "btn btn-sm btn-success" %>
