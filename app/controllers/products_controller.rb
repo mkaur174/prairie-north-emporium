@@ -3,6 +3,13 @@ class ProductsController < ApplicationController
     @categories = Category.order(:name)
     @products = Product.includes(:category).order(:title)
 
+    case params[:filter]
+    when "new"
+      @products = @products.new_arrivals
+    when "updated"
+      @products = @products.recently_updated
+    end
+
     if params[:category_id].present?
       @products = @products.where(category_id: params[:category_id])
     end
