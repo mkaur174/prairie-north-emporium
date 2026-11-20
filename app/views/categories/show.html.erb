@@ -1,0 +1,8 @@
+<div class="mb-4">
+  <h1><%= @category.name %></h1>
+  <p class="lead text-muted"><%= @category.description %></p>
+</div>
+
+<div class="row">
+  <%= render partial: "products/product_card", collection: @products, as: :product %>
+</div>

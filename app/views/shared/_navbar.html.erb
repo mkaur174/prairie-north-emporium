@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container">
+    <%= link_to "Prairie North Emporium", root_path, class: "navbar-brand fw-bold" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= link_to "All Products", root_path, class: "nav-link" %>
+        </li>
+        <% Category.order(:name).each do |category| %>
+          <li class="nav-item">
+            <%= link_to category.name, category_path(category), class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+      <% cart_count = (session[:cart] || {}).values.sum %>
+      <%= link_to "Cart (#{cart_count})", cart_path, class: "btn btn-outline-warning" %>
+    </div>
+  </div>
+</nav>
