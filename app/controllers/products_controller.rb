@@ -11,6 +11,8 @@ class ProductsController < ApplicationController
       term = "%#{params[:keyword].strip}%"
       @products = @products.where("title LIKE ? OR description LIKE ?", term, term)
     end
+
+    @products = @products.page(params[:page]).per(12)
   end
 
   def show
