@@ -1,24 +1,20 @@
-# README
+# Prairie North Board Game & Hobby Emporium (WEBD-3011)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+E-commerce web application built with Ruby on Rails, ActiveAdmin, Devise, Kaminari, and Bootstrap.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Implemented Features (44% Total — All 4 Starred Features Included)
+- **1.1** Admin dashboard login with username and password (2%)
+- **1.2** Add, edit, or delete product listings via ActiveAdmin ✩ (2%)
+- **1.5** Create/maintain product categories and assign to products (2%)
+- **1.6** Seed database with 104 products across 4 categories & 13 provinces (2%)
+- **2.1** Front page product navigation ✩ (2%)
+- **2.2** Navigate products by category (2%)
+- **2.3** Individual product detail page ✩ (2%)
+- **2.5** Paginated product listings via Kaminari (2%)
+- **2.6** Keyword search filtered by category dropdown (4%)
+- **3.1.1** Session-based shopping cart (4%)
+- **3.1.2** Edit cart item quantity & independent remove button (4%)
+- **3.1.3** Checkout process with provincial tax invoice (`orders` + `customers`) (8%)
+- **4.1.4** Rails View Partials (`_navbar`, `_product_card`, `_flash`) (2%)
+- **4.2.1** Rails validations on all non-join models (2%)
+- **5.1** Git & GitHub version control (32+ commits, 3+ merged branches) ✩ (4%)
