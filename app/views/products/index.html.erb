@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h1>Store Catalog</h1>
-  <span class="text-muted"><%= @products.count %> products found</span>
+  <span class="text-muted"><%= @products.total_count %> products found</span>
 </div>
 
 <%= form_with url: products_path, method: :get, local: true, class: "row g-2 mb-4 p-3 bg-light rounded border" do |f| %>
@@ -18,4 +18,8 @@
 
 <div class="row">
   <%= render partial: "products/product_card", collection: @products, as: :product %>
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @products %>
 </div>
