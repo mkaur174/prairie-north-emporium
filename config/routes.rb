@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: [:new, :create, :show]
+  get "/about", to: "pages#show", defaults: { slug: "about" }, as: :about
+  get "/contact", to: "pages#show", defaults: { slug: "contact" }, as: :contact
 end
