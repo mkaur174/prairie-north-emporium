@@ -3,7 +3,14 @@
   <span class="text-muted"><%= @products.total_count %> products found</span>
 </div>
 
+<div class="mb-3 d-flex gap-2">
+  <%= link_to "All Products", products_path(keyword: params[:keyword], category_id: params[:category_id]), class: "btn btn-sm #{params[:filter].blank? ? 'btn-dark' : 'btn-outline-dark'}" %>
+  <%= link_to "New Arrivals", products_path(filter: "new", keyword: params[:keyword], category_id: params[:category_id]), class: "btn btn-sm #{params[:filter] == 'new' ? 'btn-success' : 'btn-outline-success'}" %>
+  <%= link_to "Recently Updated", products_path(filter: "updated", keyword: params[:keyword], category_id: params[:category_id]), class: "btn btn-sm #{params[:filter] == 'updated' ? 'btn-info' : 'btn-outline-info'}" %>
+</div>
+
 <%= form_with url: products_path, method: :get, local: true, class: "row g-2 mb-4 p-3 bg-light rounded border" do |f| %>
+  <%= hidden_field_tag :filter, params[:filter] if params[:filter].present? %>
   <div class="col-md-5">
     <%= f.text_field :keyword, value: params[:keyword], placeholder: "Search by keyword in title or description...", class: "form-control" %>
   </div>
