@@ -99,5 +99,12 @@ catalog.each do |cat_name, data|
     )
   end
 end
-
+Page.find_or_create_by!(slug: 'about') do |p|
+  p.title = 'About Prairie North Board Game & Hobby Emporium'
+  p.content = 'Operating in Winnipeg Exchange District for 8 years, Prairie North Board Game & Hobby Emporium offers specialty board games, tabletop miniatures, trading card games, and handmade puzzles from local Manitoba artisans.'
+end
+Page.find_or_create_by!(slug: 'contact') do |p|
+  p.title = 'Contact Us'
+  p.content = 'Visit our store in the Exchange District, Winnipeg, MB, or reach our customer service team at support@prairienorth.ca or (204) 555-0148.'
+end
 puts "Seeded #{Province.count} provinces, #{Category.count} categories, and #{Product.count} products."
