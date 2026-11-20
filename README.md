@@ -91,7 +91,7 @@
 
 #### **3.1.3 — Checkout Process with Provincial Tax Invoice (8%)**
 - **How Built It:** Implemented `OrdersController#new` and `#create` collecting customer contact and shipping details including a `Province` dropdown (`Customer belongs_to :province`). On submission, the controller looks up the selected province's `gst`, `pst`, and `hst` rates, calculates itemized taxes and `total_amount`, persists the `Customer`, `Order`, and `OrderItem` records (locking in unit prices), clears `session[:cart]`, and renders the itemized tax invoice on `OrdersController#show`.
-- **How Click **Proceed to Checkout**, fill out customer details, select **Manitoba** (5% GST + 7% PST) or **Ontario** (13% HST), submit the order, and walk through the generated tax invoice.
+- **How** Click **Proceed to Checkout**, fill out customer details, select **Manitoba** (5% GST + 7% PST) or **Ontario** (13% HST), submit the order, and walk through the generated tax invoice.
 
 #### **3.2.1 — List All Past Orders with Customer, Products, Taxes & Grand Total in Admin (4%)**
 - **How Built It:** Customized `app/admin/orders.rb` using `includes(customer: :province, order_items: :product)` so the `/admin/orders` index table displays every order alongside the customer's name/email/province, a bulleted list of ordered products with quantities and unit prices, the GST/PST/HST tax breakdown, and the grand total on a single screen without navigating to other pages.
