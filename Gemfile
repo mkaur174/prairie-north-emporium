@@ -66,3 +66,5 @@ gem "devise", "~> 5.0"
 gem "sassc-rails", "~> 2.1"
 
 gem "kaminari", "~> 1.3"
+
+gem "image_processing", "~> 2.2"
