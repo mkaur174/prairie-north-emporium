@@ -1,3 +1,4 @@
+<%= render "shared/breadcrumbs", items: [[@product.category.name, category_path(@product.category)], [@product.title, nil]] %>
 <div class="card p-4 shadow-sm">
   <span class="badge bg-secondary mb-2 align-self-start"><%= @product.category.name %></span>
   <% if @product.image.attached? %>
