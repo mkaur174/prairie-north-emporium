@@ -132,7 +132,7 @@ git push origin master
 - **4.2.1** — Use Rails validations in all of your models (except join models) to ensure that data submitted to the site by administrator and customers is present and correctly formatted. (2%)
 - **5.2** — Automatically resize uploaded product images into multiple sizes using Active Storage variants. (2%)
 
-### ***1.3- add or update image ***
+### *** 1.3- add or update image ***
 - How I Built It:***  Configured Rails Active Storage (`rails active_storage:install` and `rails db:migrate`), added `has_one_attached :image` to `app/models/product.rb`, permitted `:image` in `app/admin/products.rb`, added `f.input :image, as: :file` to the ActiveAdmin product form, and configured Ransack allowlisting for `ActiveStorage::Record` in `config/initializers/active_admin.rb`.
 - **How**
   1. Log in to **Admin -> Products** (`/admin/products`).
@@ -157,7 +157,7 @@ git push origin master
   2. **Admin Validation Demo:** Go to `/admin/products/new` (or `/admin/admin_users/new`), submit blank fields or non-numeric text in **Price** / **Stock quantity**, and show ActiveAdmin blocking the submission with validation errors.
   3. **Customer Validation Demo:** Go to `/orders/new` and submit an invalid postal code or phone number to show checkout validation errors.
 
-### ***5.2- add gem for resize***
+###  *** 5.2- add gem for resize ***
 - **How I Built It:** Added the `image_processing` gem with `libvips` and rendered Active Storage `.variant(resize_to_limit: ...)` transformations across views:
   - `[60, 60]` thumbnail in ActiveAdmin `/admin/products` index table
   - `[150, 150]` / `[300, 300]` previews in ActiveAdmin edit/show views
