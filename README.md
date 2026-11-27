@@ -132,31 +132,33 @@ git push origin master
 - **4.2.1** — Use Rails validations in all of your models (except join models) to ensure that data submitted to the site by administrator and customers is present and correctly formatted. (2%)
 - **5.2** — Automatically resize uploaded product images into multiple sizes using Active Storage variants. (2%)
 
-- 1.3 **How I Built It:** Configured Rails Active Storage (`rails active_storage:install` and `rails db:migrate`), added `has_one_attached :image` to `app/models/product.rb`, permitted `:image` in `app/admin/products.rb`, added `f.input :image, as: :file` to the ActiveAdmin product form, and configured Ransack allowlisting for `ActiveStorage::Record` in `config/initializers/active_admin.rb`.
+### ***1.3- add or update image ***
+- How I Built It:***  Configured Rails Active Storage (`rails active_storage:install` and `rails db:migrate`), added `has_one_attached :image` to `app/models/product.rb`, permitted `:image` in `app/admin/products.rb`, added `f.input :image, as: :file` to the ActiveAdmin product form, and configured Ransack allowlisting for `ActiveStorage::Record` in `config/initializers/active_admin.rb`.
 - **How**
   1. Log in to **Admin -> Products** (`/admin/products`).
   2. Click **Edit** on any product, choose an image file under **Image**, and click **Update Product**.
   3. Show the uploaded image displayed on the Admin index table, Admin show page, storefront product card (`/`), and product detail page (`/products/:id`).
 
-- **3.3.2 — Preserve Historical Prices & Taxes on Past Orders (2%)**
+#### **3.3.2 — Preserve Historical Prices & Taxes on Past Orders (2%)**
 - **How I Built It:** `OrderItem` stores its own `price` decimal column copied at checkout time (`unit_price: product.price`), and `Order` stores `subtotal`, `gst_amount`, `pst_amount`, `hst_amount`, and `total_amount` at the moment the order is submitted. Editing a product's price or provincial tax rate later never alters existing order records.
 - **How**
   1. Open **Admin -> Orders** (`/admin/orders`) and note the unit price and total on an existing order.
   2. Go to **Admin -> Products** (`/admin/products`), edit that same product's price, and save it.
   3. Return to **Admin -> Orders** (`/admin/orders`) and refresh to show that the past order still displays the original price and tax amounts.
 
-- **4.1.3 — Breadcrumb Navigation (2%)**
+#### **4.1.3 — Breadcrumb Navigation (2%)**
 - **How I Built It:** Created a reusable Bootstrap breadcrumb partial in `app/views/shared/_breadcrumbs.html.erb` and rendered it on `app/views/categories/show.html.erb` (`Home > Category`) and `app/views/products/show.html.erb` (`Home > Category > Product Title`).
 - **How** Click into any category from the navbar (`Home / Board Games`), then click into a product (`Home / Board Games / Product Title`), and click the breadcrumb links to navigate back up the hierarchy.
 
-- **4.2.1 — Complete Validations Across All Non-Join Models & Admin Forms (2%)**
+#### **4.2.1 — Complete Validations Across All Non-Join Models & Admin Forms (2%)**
 - **How I Built It:** Added `presence: true` and datatype-specific validations (`numericality`, `format`, `length`, `inclusion`, `uniqueness`) for **every property** across **all 7 non-join models** (`AdminUser`, `Category`, `Product`, `Province`, `Customer`, `Order`, `Page`), leaving only the join model (`OrderItem`) without validations. ActiveAdmin automatically enforces these model validations on admin form submissions.
 - **How**
   1. Open `app/models/` in VS Code (`admin_user.rb`, `product.rb`, `category.rb`, `province.rb`, `customer.rb`, `order.rb`, `page.rb`) to show every property has presence and datatype validations (e.g., `numericality` on all numeric columns).
   2. **Admin Validation Demo:** Go to `/admin/products/new` (or `/admin/admin_users/new`), submit blank fields or non-numeric text in **Price** / **Stock quantity**, and show ActiveAdmin blocking the submission with validation errors.
   3. **Customer Validation Demo:** Go to `/orders/new` and submit an invalid postal code or phone number to show checkout validation errors.
 
-- 5.2 **How I Built It:** Added the `image_processing` gem with `libvips` and rendered Active Storage `.variant(resize_to_limit: ...)` transformations across views:
+### ***5.2- add gem for resize***
+- **How I Built It:** Added the `image_processing` gem with `libvips` and rendered Active Storage `.variant(resize_to_limit: ...)` transformations across views:
   - `[60, 60]` thumbnail in ActiveAdmin `/admin/products` index table
   - `[150, 150]` / `[300, 300]` previews in ActiveAdmin edit/show views
   - `[400, 260]` card image in `app/views/products/_product_card.html.erb`
